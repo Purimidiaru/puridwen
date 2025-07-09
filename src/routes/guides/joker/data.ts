@@ -1,11 +1,11 @@
 export const jokerData = {
   /* ------ Meta ------ */
-  element: "Curse",
+  element: { name: "Curse", icon: "/images/curse.png" },
   role: "DPS Burst",
   targetType: "Single-Target",
   tier: {
     general: "T0",
-    boss: "T0"
+    boss:    "T0"
   },
 
   /* ------ Rotation détaillée ------ */
@@ -16,29 +16,41 @@ export const jokerData = {
   ],
   rotationIdeal: "Wonder → Leo → Rin → Joker",
 
-  /* ------ Build ------ */
-  weapon: "Phoenix Dagger (5★)",
-  revelations: ["Departure (2 set)", "Ruin (4 set)"],
+  /* ------ Weapons (max 2 lignes) ------ */
+  weapons: [
+    { img: "/images/phoenix.png", name: "Phoenix Dagger (5★)" },
+    { img: "/images/machete.png", name: "Machete (4★)" }
+  ],
+
+  /* ------ Révélations (Nom + Pourquoi) ------ */
+  revelations: [
+    { name: "Departure (2 set)", why: "Boosts ATK après élimination" },
+    { name: "Ruin (4 set)",      why: "Augmente les dégâts Curse" }
+  ],
+
   awarenessPrio: ["A4", "A6", "A2", "A1"],
 
   /* ------ Teams (2 lignes) ------ */
   bestTeams: [
     [
-      { name: "Joker", img: "/images/joker-full.png" },
-      { name: "Leon",  img: "/images/leon.png" },
-      { name: "Rin",   img: "/images/rin.png" },
-      { name: "Oykann",img: "/images/oykann.png" }
+      { name: "Joker",  img: "/images/joker.jpg" },
+      { name: "Leon",   img: "/images/leon.png"  },
+      { name: "Rin",    img: "/images/rin.png"   },
+      { name: "Oykann", img: "/images/oykann.png"}
     ],
     [
-      { name: "Joker", img: "/images/joker-full.png" },
-      { name: "Rin",   img: "/images/rin.png" },
-      { name: "Cattle",img: "/images/cattle.png" },
-      { name: "Oykann",img: "/images/oykann.png" }
+      { name: "Joker",  img: "/images/joker.jpg"  },
+      { name: "Rin",    img: "/images/rin.png"    },
+      { name: "Cattle", img: "/images/cattle.png" },
+      { name: "Oykann", img: "/images/oykann.png" }
     ]
   ],
 
   /* ------ Stats ------ */
-  statsBaseline: ["30 % CR %", "200 % CD %", "10+ PEN"],
-  wonderStats:   "ATK %, DMG Bonus %, PEN",
-  coreAttrGoals: "Crit Rate ≥ 60 %, Attack ≥ 5 000"
+  statsCombined: [
+    "30 % CR %, 200 % CD %, 10 + PEN",
+    "Crit Rate ≥ 60 %, ATK ≥ 5 000"
+  ],
+
+  wonderStats: "ATK %, DMG Bonus %, PEN"
 };
