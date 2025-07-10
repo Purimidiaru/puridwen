@@ -42,7 +42,7 @@
   /* ─── Weapons ─── */
   .weaponGrid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
   .weaponItem{display:flex;gap:.8rem;align-items:center;}
-  .weaponItem img{width:120px;border-radius:.4rem;}
+  .weaponItem img{width:150px;border-radius:.4rem;}
 
   /* ─── Teams ─── */
   .teamGrid{display:flex;flex-direction:column;gap:2rem;align-items:center;}
@@ -97,6 +97,11 @@
   }
   .wonderGrid figure{display:grid;gap:.5rem;justify-items:center;text-align:center;}
   .wonderGrid img{width:270px;height:270px;object-fit:contain;border:2px solid transparent;border-radius:.75rem;}
+
+    /* ─── Icônes Révélations : +200 % ─── */
+  .revelations-table td img{
+    width:240px;              /* 24 px × 2 = 48 px */
+  }
 </style>
 
 <svelte:head><title>Joker – Guide</title></svelte:head>
@@ -141,11 +146,23 @@
   <!-- ─── Révélations ─── -->
   <div class="section">
     <h2>Révélations recommandées</h2>
-    <table class="table">
-      <thead><tr><th>Set</th><th>Pourquoi</th></tr></thead>
+    <table class="table revelations-table">
+      <thead>
+        <tr><th colspan="2">Set</th><th>Pourquoi</th></tr>
+      </thead>
       <tbody>
         {#each d.revelations as r}
-          <tr><td>{r.name}</td><td>{r.why}</td></tr>
+          <tr>
+            <td>{r.name}</td>
+            <td style="text-align:center;">
+              {#if r.name.startsWith('Departure')}
+                <img src="/images/revelations/departure.png" alt="Departure icon" />
+              {:else if r.name.startsWith('Hindrance')}
+                <img src="/images/revelations/hindrance.png" alt="Hindrance icon" />
+              {/if}
+            </td>
+            <td>{r.why}</td>
+          </tr>
         {/each}
       </tbody>
     </table>
