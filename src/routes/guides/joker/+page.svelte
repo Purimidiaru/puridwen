@@ -25,11 +25,23 @@
   /* teams */
   .teamGrid{display:flex;flex-direction:column;gap:2rem;align-items:center;}
   .teamRow{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;}
-  .teamRow figure{display:grid;gap:.35rem;justify-items:center;text-align:center;}
-  .teamRow img{width:120px;height:120px;object-fit:contain;border:2px solid transparent;border-radius:.75rem;}
+  .teamRow figure{display:grid;gap:.45rem;justify-items:center;text-align:center;}
 
-  /* wonder personae */
-  .wonderGrid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));justify-items:center;}
+  /*  portrait commun – maintenant 300 × 300 px  */
+  .teamRow img{
+    width:250px;
+    height:250px;
+    object-fit:contain;
+    border:2px solid transparent;
+    border-radius:.75rem;
+  }
+
+  /* wonder personae (inchangé) */
+  .wonderGrid{
+    display:grid;gap:1.5rem;
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    justify-items:center;
+  }
   .wonderGrid figure{display:grid;gap:.5rem;justify-items:center;text-align:center;}
   .wonderGrid img{width:270px;height:270px;object-fit:contain;border:2px solid transparent;border-radius:.75rem;}
 </style>
@@ -108,7 +120,7 @@
             </figure>
           {/each}
         </div>
-        <em style="margin-top:.6rem;">Rotation&nbsp;: {team.rotation}</em>
+        <em style="margin-top:.8rem;">Rotation&nbsp;: {team.rotation}</em>
       {/each}
     </div>
   </div>

@@ -23,17 +23,17 @@ export const jokerData = {
     { name: "Machete (4★)",        img: "/images/weapons/machete.png"        }
   ],
   revelations: [
-    { name: "Departure (Space)", why: "Boosts ATK après élimination" },
+    { name: "Departure (Space)", why: "Après avoir vaincu un ennemi, augmente l'attaque de l'utilisateur de 30 % pendant 3 tours" },
     { name: "Hindrance (Sun/Moon/Star/Sky)",      why: "Augmente les dégâts de Curse infligés aux ennemis avec des affaiblissements de 20 %"    }
   ],
 
   /* —— Awareness —— */
   awarenessPrio: ["A4", "A6", "A2", "A1"],
   awarenessReasons: {
-    A4: "DMG Bonus %",
-    A6: "Crit Rate",
-    A2: "PEN",
-    A1: "ATK %"
+    A4: "Highlight Amélioré: Augmentez le nombre de cumuls de Will of Rebellion gagnés à 3.",
+    A6: "Après une action supplémentaire, si des ennemis ont moins de 25 % de PV, infligez des dégâts équivalents à 250 % de l'attaque de Ren (une fois par ennemi et par combat). Après avoir utilisé une compétence lors d'une action supplémentaire, infligez des dégâts de Curse équivalents à 50 % de l'attaque à tous les ennemis.",
+    A2: "Lors d'une action supplémentaire, diminue le coût de SP de skills de 80 %. Lorsque le SP de Ren dépassent 60 %, augmente l'attaque de 50 %.",
+    A1: "Augmente les dégâts des skills sur le main target de 30 % et augmente les dégâts des skills sur les autres targets de 10 %."
   },
 
   /* —— Teams —— */
@@ -43,18 +43,22 @@ export const jokerData = {
         { name: "Joker",  img: "/images/joker.png"  },
         { name: "Leon",   img: "/images/leon.png"   },
         { name: "Rin",    img: "/images/rin.png"    },
-        { name: "Oykann", img: "/images/oykann.png" }
+        { name: "Oykann", img: "/images/oykann.png" },
+        { name: "OU",     img: "" },
+        { name: "Puppet", img: "/images/puppet.png" }
       ],
-      rotation: "Wonder → Leo → Rin → Joker"
+      rotation: "Rin → Leon → Wonder → Joker"
     },
     {
       members: [
         { name: "Joker",  img: "/images/joker.png"  },
-        { name: "Rin",    img: "/images/rin.png"     },
-        { name: "Cattle", img: "/images/cattle.png"  },
-        { name: "Oykann", img: "/images/oykann.png"  }
+        { name: "Rin",    img: "/images/rin.png"    },
+        { name: "Morgana",img: "/images/morgana.png"},
+        { name: "Oykann", img: "/images/oykann.png" },
+        { name: "OU",     img: "" },
+        { name: "Puppet", img: "/images/puppet.png" }
       ],
-      rotation: "Wonder → Cattle → Rin → Joker"
+      rotation: "Rin → Morgana → Wonder → Joker"
     }
   ],
 
