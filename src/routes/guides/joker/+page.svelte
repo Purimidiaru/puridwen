@@ -1,14 +1,9 @@
 <script lang="ts">
   import { jokerData as d } from './data';
-
-  /* mapping awareness → why (à compléter dans data.ts si besoin) */
-  const why = d.awarenessReasons ?? {
-    A4: "—", A6: "—", A2: "—", A1: "—"
-  };
+  const why = d.awarenessReasons ?? {};
 </script>
 
 <style>
-  /* marge */
   .page{padding-left:10%;padding-right:4%;}
 
   /* bannière */
@@ -22,29 +17,27 @@
   .table{width:100%;border-collapse:collapse;}
   .table th,.table td{border:1px solid var(--border);padding:.5rem;text-align:left;}
 
-  /* weapons (+150 %) */
+  /* weapons */
   .weaponGrid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
   .weaponItem{display:flex;gap:.8rem;align-items:center;}
-  .weaponItem img{width:72px;border-radius:.4rem;}
+  .weaponItem img{width:120px;border-radius:.4rem;}
 
   /* teams */
   .teamGrid{display:flex;flex-direction:column;gap:2rem;align-items:center;}
   .teamRow{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;}
-
   .teamRow figure{display:grid;gap:.35rem;justify-items:center;text-align:center;}
+  .teamRow img{width:120px;height:120px;object-fit:contain;border:2px solid transparent;border-radius:.75rem;}
 
-  .teamRow img{width:90px;height:90px;object-fit:contain;border:2px solid var(--border);border-radius:.75rem;}
-  .teamRow img.joker{width:170px;height:170px;border:none;}
-
-  /* wonder grid (4 per row) */
-  .wonderGrid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));justify-items:center;}
-  .wonderGrid img{width:90px;height:90px;object-fit:contain;border:2px solid var(--border);border-radius:.75rem;}
+  /* wonder personae */
+  .wonderGrid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));justify-items:center;}
+  .wonderGrid figure{display:grid;gap:.5rem;justify-items:center;text-align:center;}
+  .wonderGrid img{width:270px;height:270px;object-fit:contain;border:2px solid transparent;border-radius:.75rem;}
 </style>
 
-<svelte:head><title>Joker — Guide • Puridwen</title></svelte:head>
+<svelte:head><title>Joker - Guide</title></svelte:head>
 
 <div class="page">
-  <h1>{d.role} : Joker</h1>
+  <h1>Joker</h1>
 
   <!-- Bannière -->
   <div class="banner">
@@ -53,7 +46,7 @@
       <thead><tr><th>General</th><th>Bossing∕Guilde</th></tr></thead>
       <tbody><tr>
         <td class={d.tier.general==='T0'?'t0':''}>{d.tier.general}</td>
-        <td class={d.tier.boss   ==='T0'?'t0':''}>{d.tier.boss}</td>
+        <td class={d.tier.boss==='T0'?'t0':''}>{d.tier.boss}</td>
       </tr></tbody>
     </table>
   </div>
@@ -64,7 +57,7 @@
     <table class="table">
       <tbody>
         <tr><th>Élément</th><td><img src={d.element.icon} alt="" style="width:20px;margin-right:.35rem;vertical-align:middle;">{d.element.name}</td></tr>
-        <tr><th>Rôle</th><td>{d.role}</td></tr>
+        <tr><th>Rôle</th><td><img src={d.roleIcon} alt="" style="width:20px;margin-right:.35rem;vertical-align:middle;">{d.role}</td></tr>
         <tr><th>Cible</th><td>{d.targetType}</td></tr>
       </tbody>
     </table>
@@ -106,18 +99,16 @@
   <div class="section">
     <h2>Best Teams</h2>
     <div class="teamGrid">
-      {#each d.bestTeams as row,i}
+      {#each d.bestTeams as team}
         <div class="teamRow">
-          {#each row as p}
+          {#each team.members as p}
             <figure>
-              <img src={p.img} alt={p.name} class={p.name==='Joker'?'joker':''}>
+              <img src={p.img} alt={p.name}>
               <figcaption>{p.name}</figcaption>
             </figure>
           {/each}
         </div>
-
-        <!-- rotation pour cette équipe -->
-        <div style="margin-top:.5rem;font-style:italic;">Rotation : {d.rotationIdeal}</div>
+        <em style="margin-top:.6rem;">Rotation&nbsp;: {team.rotation}</em>
       {/each}
     </div>
   </div>
@@ -126,15 +117,16 @@
   <div class="section">
     <h2>Wonder Personae</h2>
     <div class="wonderGrid">
-      {#each d.wonderPersonae ?? [] as p}
+      {#each d.wonderPersonae as p}
         <figure>
-          <img src={p.img} alt={p.name}><figcaption>{p.name}</figcaption>
+          <img src={p.img} alt={p.name}>
+          <figcaption>{p.name}</figcaption>
         </figure>
       {/each}
     </div>
   </div>
 
-  <!-- Stats & Core -->
+  <!-- Stats -->
   <div class="section">
     <h2>Stats & Core Goals</h2>
     <ul>{#each d.statsCombined as s}<li>{s}</li>{/each}</ul>
