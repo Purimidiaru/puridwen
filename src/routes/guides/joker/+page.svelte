@@ -31,20 +31,17 @@
   }
   .teamRow figure{display:grid;gap:.45rem;justify-items:center;text-align:center;}
 
-  /* portraits – réduits de 50 % */
+  /* portraits – 200 × 200 px */
   .teamRow img{
-    width:200px;
-    height:200px;
-    object-fit:contain;
-    border:2px solid transparent;
-    border-radius:.75rem;
+    width:200px;height:200px;object-fit:contain;
+    border:2px solid transparent;border-radius:.75rem;
   }
 
-  /* séparateur "OU" */
-  .teamRow .or{
-    font-size:3rem;
-    font-weight:700;
-    line-height:1;
+  /* slash : largeur auto mais hauteur = 200 px pour l’alignement */
+  .teamRow .slash{
+    display:flex;align-items:center;justify-content:center;
+    height:200px;          /* même hauteur que les portraits */
+    font-size:6rem;font-weight:700;line-height:1;
   }
 
   /* wonder personae (inchangé) */
@@ -136,7 +133,7 @@
                 <figcaption>{p.name}</figcaption>
               </figure>
             {:else}
-              <span class="or">OU</span>
+              <span class="slash">/</span>
             {/if}
           {/each}
         </div>
