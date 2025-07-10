@@ -4,9 +4,9 @@
 
 export const jokerData = {
   /* —— Meta —— */
-  element: { name: "Curse", icon: "/icons/curse.webp" },
+  element: { name: "Curse", icon: "images/icons/curse.webp" },
   role: "Sweeper",
-  roleIcon: "/icons/sweeper.webp",
+  roleIcon: "images/icons/sweeper.webp",
   targetType: "Multi-Target",
   tier: { general: "T0", boss: "T0" },
 
