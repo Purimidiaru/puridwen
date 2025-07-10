@@ -33,8 +33,8 @@
 
   /* portraits – réduits de 50 % */
   .teamRow img{
-    width:150px;
-    height:150px;
+    width:200px;
+    height:200px;
     object-fit:contain;
     border:2px solid transparent;
     border-radius:.75rem;
