@@ -4,9 +4,9 @@
 
 export const jokerData = {
   /* —— Meta —— */
-  element: { name: "Curse", icon: "images/icons/curse.webp" },
+  element: { name: "Curse", icon: "/images/icons/curse.webp" },
   role: "Sweeper",
-  roleIcon: "images/icons/sweeper.webp",
+  roleIcon: "/images/icons/sweeper.webp",
   targetType: "Multi-Target",
   tier: { general: "T0", boss: "T0" },
 
@@ -23,8 +23,8 @@ export const jokerData = {
     { name: "Machete (4★)",        img: "/images/weapons/machete.png"        }
   ],
   revelations: [
-    { name: "Departure (2 set)", why: "Boosts ATK après élimination" },
-    { name: "Ruin (4 set)",      why: "Augmente les dégâts Curse"    }
+    { name: "Departure (Space)", why: "Boosts ATK après élimination" },
+    { name: "Hindrance (Sun/Moon/Star/Sky)",      why: "Augmente les dégâts de Curse infligés aux ennemis avec des affaiblissements de 20 %"    }
   ],
 
   /* —— Awareness —— */
