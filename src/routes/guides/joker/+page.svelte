@@ -112,6 +112,7 @@
   <!-- Awareness -->
   <div class="section">
     <h2>Priorité d'Awareness</h2>
+    <p style="font-weight:700;margin-bottom:.6rem;">A4 → A6 → A2 → A1</p>
     <table class="table">
       <thead><tr><th>Awareness</th><th>Pourquoi</th></tr></thead>
       <tbody>
