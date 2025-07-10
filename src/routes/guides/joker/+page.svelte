@@ -9,7 +9,7 @@
       const m = clean[i];
       if (m.name === 'Okyann' && clean[i + 1]?.name === 'Puppet') {
         list.push({ double: true, pair: [m, clean[i + 1]] });
-        i++;                                  // saute Puppet
+        i++;
       } else if (m.name === 'Puppet' && clean[i - 1]?.name === 'Okyann') {
         continue;
       } else {
@@ -46,66 +46,48 @@
 
   /* ─── Teams ─── */
   .teamGrid{display:flex;flex-direction:column;gap:2rem;align-items:center;}
-
   .teamRow{
-    display:flex;
-    gap:5%;                  /* espacement externe entre cadres          */
-    flex-wrap:nowrap;
+    display:flex;gap:5%;flex-wrap:nowrap;
     justify-content:center;align-items:flex-start;
   }
 
-  /* ─── Figure générique (cadre + légende) ─── */
-  .frame{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    margin:0;                 /* supprime le margin natif de <figure>     */
-    flex:0 0 auto;
-  }
+  /* ─── Figure (cadre + nom) ─── */
+  .frame{display:flex;flex-direction:column;align-items:center;margin:0;flex:0 0 auto;}
   .frame.single{width:260px;}
   .frame.double{width:520px;}
 
-  /* ─── Carte : zone bordurée qui contient l’image ─── */
+  /* ─── Carte : fond + bordure + image(s) ─── */
   .card{
-    width:100%;
-    height:320px;
-    box-sizing:border-box;
-    padding:0.25%;
+    position:relative;
+    width:100%;height:320px;
+    box-sizing:border-box;padding:0.25%;
     border:2px solid #fff;
-    background:var(--bg-surface);
-    overflow:hidden;          /* jamais de dépassement                    */
+    background-color:var(--bg-surface);
+    background-image:url('/images/character_background.png');  /* ← fond ajouté */
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    overflow:hidden;
+
     display:flex;align-items:center;justify-content:center;
   }
 
-  /* simple = une seule image */
+  /* simple */
   .card.single img{
-    max-width:100%;
-    max-height:100%;
-    width:auto;height:auto;
-    object-fit:contain;
-    border-radius:.75rem;
+    max-width:100%;max-height:100%;
+    object-fit:contain;border-radius:.75rem;
   }
 
-  /* double = 2 images côte à côte */
-  .card.double{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-  }
+  /* double */
+  .card.double{display:grid;grid-template-columns:1fr 1fr;}
   .card.double img{
-    max-width:100%;
-    max-height:100%;
-    width:auto;height:auto;
-    object-fit:contain;
-    border-radius:.75rem;
+    max-width:100%;max-height:100%;
+    object-fit:contain;border-radius:.75rem;
     place-self:center;
   }
 
-  /* légendes sous le cadre */
-  figcaption{
-    margin-top:.35rem;
-    font-size:.9rem;
-    text-align:center;
-  }
+  /* noms sous la carte */
+  figcaption{margin-top:.35rem;font-size:.9rem;text-align:center;}
 
   /* ─── Wonder Personae ─── */
   .wonderGrid{
@@ -191,7 +173,7 @@
         <div class="teamRow">
           {#each frames(team.members) as frame}
             {#if frame.double}
-              <!-- Cadre double -->
+              <!-- double -->
               <figure class="frame double">
                 <div class="card double">
                   {#each frame.pair as m}
@@ -201,7 +183,7 @@
                 <figcaption>Okyann ou Puppet</figcaption>
               </figure>
             {:else}
-              <!-- Cadre simple -->
+              <!-- simple -->
               <figure class="frame single">
                 <div class="card single">
                   <img src={frame.solo.img} alt={frame.solo.name}>
