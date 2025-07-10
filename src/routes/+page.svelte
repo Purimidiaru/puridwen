@@ -3,7 +3,14 @@
     {
       slug: 'joker',
       title: 'Joker',
-      cover: '/images/joker.jpg'      // portrait 3×4
+      cover: '/images/joker.webp',      // portrait 3×4
+      logo: '/images/icons/curse.webp'
+    },
+    {
+      slug: 'yui',
+      title: 'Yui',
+      cover: '/images/yui.webp',        // portrait 3×4 (replace with actual path if different)
+      logo: '/images/icons/elec.webp'
     }
   ];
 </script>
@@ -20,7 +27,7 @@
         <!-- barre titre : texte centré + logo overlay -->
         <div class="title">
           <span>{g.title}</span>
-          <img class="curse" src="/images/curse.png" alt="Curse logo" />
+          <img class="curse" src={g.logo} alt="Guide logo" />
         </div>
       </a>
     {/each}

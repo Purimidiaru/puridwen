@@ -106,7 +106,7 @@
 
   <!-- ─── Bannière ─── -->
   <div class="banner">
-    <img src="/images/joker.webp" alt="Joker" style="width:200px;border-radius:.75rem;">
+    <img src="/images/joker-icon.webp" alt="Joker" style="width:200px;border-radius:.75rem;">
     <table class="tier">
       <thead><tr><th>General</th><th>Bossing∕Guilde</th></tr></thead>
       <tbody><tr>

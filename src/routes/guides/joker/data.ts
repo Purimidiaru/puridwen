@@ -40,23 +40,23 @@ export const jokerData = {
   bestTeams: [
     {
       members: [
-        { name: "Joker",  img: "/images/joker.png"  },
-        { name: "Leon",   img: "/images/leon.png"   },
-        { name: "Rin",    img: "/images/rin.png"    },
-        { name: "Okyann", img: "/images/oykann.png" },
+        { name: "Joker",  img: "/images/characters/joker.png"  },
+        { name: "Leon",   img: "/images/characters/leon.png"   },
+        { name: "Rin",    img: "/images/characters/rin.png"    },
+        { name: "Okyann", img: "/images/characters/oykann.png" },
         { name: "OU" },                                          // séparateur visuel
-        { name: "Puppet", img: "/images/puppet.png" }
+        { name: "Puppet", img: "/images/characters/puppet.png" }
       ],
       rotation: "Rin → Leo → Wonder → Joker"
     },
     {
       members: [
-        { name: "Joker",   img: "/images/joker.png"   },
-        { name: "Rin",     img: "/images/rin.png"     },
-        { name: "Mona", img: "/images/mona.png" },
-        { name: "Okyann",  img: "/images/oykann.png"  },
+        { name: "Joker",   img: "/images/characters/joker.png"   },
+        { name: "Rin",     img: "/images/characters/rin.png"     },
+        { name: "Mona",    img: "/images/characters/mona.png" },
+        { name: "Okyann",  img: "/images/characters/oykann.png"  },
         { name: "OU" },
-        { name: "Puppet",  img: "/images/puppet.png"  }
+        { name: "Puppet",  img: "/images/characters/puppet.png"  }
       ],
       rotation: "Rin → Mona → Wonder → Joker"
     }
