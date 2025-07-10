@@ -7,8 +7,10 @@
   .page{padding-left:10%;padding-right:4%;}
 
   /* bannière */
-  .banner{display:flex;gap:1.5rem;align-items:center;justify-content:center;
-          background:var(--bg-surface);padding:1.5rem;border-radius:1rem;}
+  .banner{
+    display:flex;gap:1.5rem;align-items:center;justify-content:center;
+    background:var(--bg-surface);padding:1.5rem;border-radius:1rem;
+  }
   .tier{border-collapse:collapse;font-size:1.2rem;min-width:240px;}
   .tier th,.tier td{border:1px solid var(--border);padding:.6rem 1.2rem;text-align:center;}
   .tier td.t0{background:#E02828;color:#fff;font-weight:700;}
@@ -24,16 +26,25 @@
 
   /* teams */
   .teamGrid{display:flex;flex-direction:column;gap:2rem;align-items:center;}
-  .teamRow{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;}
+  .teamRow{
+    display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;align-items:center;
+  }
   .teamRow figure{display:grid;gap:.45rem;justify-items:center;text-align:center;}
 
-  /*  portrait commun – maintenant 300 × 300 px  */
+  /* portraits – réduits de 50 % */
   .teamRow img{
-    width:250px;
-    height:250px;
+    width:150px;
+    height:150px;
     object-fit:contain;
     border:2px solid transparent;
     border-radius:.75rem;
+  }
+
+  /* séparateur "OU" */
+  .teamRow .or{
+    font-size:3rem;
+    font-weight:700;
+    line-height:1;
   }
 
   /* wonder personae (inchangé) */
@@ -46,7 +57,7 @@
   .wonderGrid img{width:270px;height:270px;object-fit:contain;border:2px solid transparent;border-radius:.75rem;}
 </style>
 
-<svelte:head><title>Joker - Guide</title></svelte:head>
+<svelte:head><title>Joker – Guide</title></svelte:head>
 
 <div class="page">
   <h1>Joker</h1>
@@ -90,7 +101,11 @@
     <h2>Révélations recommandées</h2>
     <table class="table">
       <thead><tr><th>Set</th><th>Pourquoi</th></tr></thead>
-      <tbody>{#each d.revelations as r}<tr><td>{r.name}</td><td>{r.why}</td></tr>{/each}</tbody>
+      <tbody>
+        {#each d.revelations as r}
+          <tr><td>{r.name}</td><td>{r.why}</td></tr>
+        {/each}
+      </tbody>
     </table>
   </div>
 
@@ -114,13 +129,17 @@
       {#each d.bestTeams as team}
         <div class="teamRow">
           {#each team.members as p}
-            <figure>
-              <img src={p.img} alt={p.name}>
-              <figcaption>{p.name}</figcaption>
-            </figure>
+            {#if p.img}
+              <figure>
+                <img src={p.img} alt={p.name}>
+                <figcaption>{p.name}</figcaption>
+              </figure>
+            {:else}
+              <span class="or">OU</span>
+            {/if}
           {/each}
         </div>
-        <em style="margin-top:.8rem;">Rotation&nbsp;: {team.rotation}</em>
+        <em style="margin-top:.8rem;">Rotation : {team.rotation}</em>
       {/each}
     </div>
   </div>
@@ -140,7 +159,11 @@
 
   <!-- Stats -->
   <div class="section">
-    <h2>Stats & Core Goals</h2>
-    <ul>{#each d.statsCombined as s}<li>{s}</li>{/each}</ul>
+    <h2>Stats &amp; Core Stats</h2>
+    <ul>
+      {#each d.statsCombined as s}
+        <li>{s}</li>
+      {/each}
+    </ul>
   </div>
 </div>
