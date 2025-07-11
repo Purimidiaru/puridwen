@@ -24,7 +24,7 @@
 
   const pros:string[]    = d.pros ?? [
     'Très bons dégâts Curse en AoE',
-    'Self-buff ATK + Will of Rebellion faciles à empiler',
+    'Buff ATK faciles à empiler pour des gros burst damages',
     'Excellent pour nettoyer des vagues rapidement'
   ];
 
@@ -56,9 +56,15 @@
     },
     {
       id : 4,
-      name : 'Will of Rebellion',
+      name : 'Adverse Resolve',
       type : 'Passive',
-      description : 'À chaque ennemi vaincu, +1 cumul ; chaque cumul octroie +6 % ATK (max 10).'
+      description : "Augmente l'attaque de 18% pour chaque stack de Will of Rebellion"
+    },
+    {
+      id : 5,
+      name : 'Resistance',
+      type : 'Passive',
+      description : "Augmente les dégâts des Extra Actions de 72%"
     }
   ];
 

@@ -1,79 +1,106 @@
 /* =========================================================================
-   Joker – Build & Guide  (Persona 5: The Phantom X)
-   ======================================================================= */
+   Yui – Build & Guide  (Persona 5: The Phantom X)
+   ====================================================================== */
 
-export const jokerData = {
+export const yuiData = {
   /* —— Meta —— */
-  element: { name: "Curse", icon: "/images/icons/curse.webp" },
-  role: "Sweeper",
-  roleIcon: "/images/icons/sweeper.webp",
-  targetType: "Multi-Target",
-  tier: { general: "T0", boss: "T0" },
+  element   : { name: "Elec", icon: "/images/icons/elec.webp" },
+  role      : "Assassin",
+  roleIcon  : "/images/icons/assassin.webp",
+  targetType: "Single-Target",
+  tier      : { general: "T1", boss: "T0.5" },
 
   /* —— Rotation skills —— */
   rotationSkills: [
-    { order: "1", skill: "Trickster's Plunder", scenario: "T1 — obtient 3 Will of Rebellion" },
-    { order: "2", skill: "Arsène's Chains",     scenario: "T1 bis — si Extra Turn" },
-    { order: "3", skill: "Phantom Omen",        scenario: "Burst quand 3 stacks" }
+    { order: "1", skill: "Skill 3", scenario: "T1 — burst opener" },
+    { order: "2", skill: "Skill 1", scenario: "T1 bis — follow-up after burst" },
+    { order: "3", skill: "Skill 2", scenario: "T2 — cooldown filler" }
   ],
 
   /* —— Build —— */
   weapons: [
-    { name: "Phoenix Dagger (5★)", img: "/images/weapons/phoenix_dagger.png" },
-    { name: "Machete (4★)",        img: "/images/weapons/machete.png"        }
+    {
+      name   : "Blitz Blade (5★)",
+      img    : "/images/weapons/blitz_blade.png",
+      passive: "+30 % Elec DMG lorsque les PV > 80 %"
+    },
+    {
+      name   : "Thunder Kukri (4★)",
+      img    : "/images/weapons/thunder_kukri.png",
+      passive: "Attaques critiques : +15 % dégâts supplémentaires"
+    }
   ],
   revelations: [
-    { name: "Departure (Space)", why: "Après avoir vaincu un ennemi, augmente l'attaque de l'utilisateur de 30 % pendant 3 tours" },
-    { name: "Hindrance (Sun/Moon/Star/Sky)", why: "Augmente les dégâts de Curse infligés aux ennemis affaiblis de 20 %" }
+    {
+      name: "Renewall",
+      why : "Augmente l’ATK de base de Yui et surtout les dégâts Elec infligés"
+    },
+    {
+      name: "Growth",
+      why : "Les attaques de suivi gagnent +50 % crit dmg — Yui s’appuie beaucoup dessus"
+    }
   ],
 
   /* —— Awareness —— */
-  awarenessPrio: ["A4", "A6", "A2", "A1"],
+  awarenessPrio: ["A1", "A6", "A4"],
   awarenessReasons: {
-    A1: "Augmente les dégâts des skills sur la cible principale de 30 % et sur les autres cibles de 10 %",
-    A2: "Lors d'une action supplémentaire, réduit le coût SP des skills de 80 %. Si le SP de Ren > 60 %, +50 % ATK",
-    A4: "Highlight amélioré : +3 cumuls de Will of Rebellion gagnés",
-    A6: "Après une action supplémentaire : si un ennemi <25 % PV → 250 % ATK dégâts (1×/ennemi/combat). Après avoir utilisé une compétence en action supplémentaire : 50 % ATK dégâts Curse à tous",
+    A1: "Crit Rate +30 %",
+    A6: "Dégâts de follow-up +110 % (monocible) et deviennent AoE",
+    A4: "+40 % crit dmg sur les follow-ups pendant 2 tours sous Highlight"
   },
 
   /* —— Teams —— */
   bestTeams: [
     {
       members: [
-        { name: "Joker",  img: "/images/characters/joker.png"  },
-        { name: "Leon",   img: "/images/characters/leon.png"   },
-        { name: "Rin",    img: "/images/characters/rin.png"    },
-        { name: "Okyann", img: "/images/characters/oykann.png" },
-        { name: "OU" },                                          // séparateur visuel
-        { name: "Puppet", img: "/images/characters/puppet.png" }
-      ],
-      rotation: "Rin → Leo → Wonder → Joker"
-    },
-    {
-      members: [
-        { name: "Joker",   img: "/images/characters/joker.png"   },
-        { name: "Rin",     img: "/images/characters/rin.png"     },
-        { name: "Mona",    img: "/images/characters/mona.png" },
+        { name: "Yui",     img: "/images/characters/yui.png"     },
+        { name: "Closer",  img: "/images/characters/closer.png"  },
+        { name: "Marian",  img: "/images/characters/marian.png"  },
         { name: "Okyann",  img: "/images/characters/oykann.png"  },
         { name: "OU" },
         { name: "Puppet",  img: "/images/characters/puppet.png"  }
       ],
-      rotation: "Rin → Mona → Wonder → Joker"
+      rotation: "Yui → Closer → Wonder → Marian"
+    },
+    {
+      members: [
+        { name: "Yui",     img: "/images/characters/yui.png"     },
+        { name: "Closer",  img: "/images/characters/closer.png"  },
+        { name: "Soy",     img: "/images/characters/soy.png"     },
+        { name: "Okyann",  img: "/images/characters/oykann.png"  },
+        { name: "OU" },
+        { name: "Puppet",  img: "/images/characters/puppet.png"  }
+      ],
+      rotation: "Yui → Closer → Wonder → Soy"
     }
   ],
 
   /* —— Stats —— */
   statsCombined: [
-    "Attack: 2960",
-    "Total Mult. + : 43%",
-    "Crit Rate: 37%",
-    "Crit Mult.: 177%"
+    "Attack : 3120",
+    "Total Mult. + : 48 %",
+    "Crit Rate : 42 %",
+    "Crit Mult. : 184 %"
   ],
 
   /* —— Wonder Personae —— */
+  corePersonaeEarly: [
+    { name: "Yurlungur",      img: "/images/personae/yurlungur.png"      },
+    { name: "Amano no Uzume", img: "/images/personae/amano_no_uzume.png" },
+    { name: "Janosik",        img: "/images/personae/janosik.png"        },
+    { name: "Sarasvati",      img: "/images/personae/sarasvati.png"      }
+  ],
   wonderPersonae: [
-    { name: "Alice",    img: "/images/personae/alice.png"    },
-    { name: "Dionysus", img: "/images/personae/dionysus.png" },
-    { name: "Surt",     img: "/images/personae/surt.png"     }
+    { name: "Thor",   img: "/images/personae/thor.png"   },
+    { name: "Hariti", img: "/images/personae/hariti.png" },
+    { name: "Pixie",  img: "/images/personae/pixie.png"  }
+  ],
+
+  /* —— Sub-stats —— */
+  bestSubstats: [
+    "Crit Mult.",
+    "Crit Rate",
+    "Pierce",
+    "Damage"
   ]
 };
