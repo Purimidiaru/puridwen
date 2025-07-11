@@ -110,37 +110,97 @@ a {
   opacity: .8;
 }
 
+
 /* ─────────────────────────────────────────────────────────────────── */
-/* ADAPTATION ÉCRANS “4K” & HIGH-DPI WINDOWS (Scaling ≥200 %)         */
+/* 1) Bannière – taille fixe + responsive                             */
 /* ─────────────────────────────────────────────────────────────────── */
-/*
-  - “Vrai” 4K CSS width ≥ 2560px
-  OR
-  - CSS width ≥ 1280px + devicePixelRatio ≥ 2
-*/
+.banner-img {
+  width: 200px;
+  max-width: 30%;
+  border-radius: .75rem;
+}
+.banner .tier {
+  min-width: 240px;
+  max-width: 30%;
+}
+/* mobile-only override */
+@media (max-width: 768px) {
+  .banner {
+    flex-direction: column;
+    align-items: center;
+  }
+  .banner-img {
+    width: clamp(100px, 40vw, 150px);
+  }
+  .banner .tier {
+    width: 100%;
+    max-width: 200px;
+    margin-top: .5rem;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────── */
+/* 2) Révélations : images fluides + desktop à ½ taille               */
+/* ─────────────────────────────────────────────────────────────────── */
+.revelations-table td img {
+  width: 100%;
+  max-width: 120px;    /* 200 % de 60px */
+  height: auto;
+  display: block;
+  margin: 0.5rem auto;
+}
+
+/* À partir de 769px (desktop) on revient à 60px */
+@media (min-width: 769px) {
+  .revelations-table td img {
+    max-width: 60px;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────── */
+/* 3) Best Teams – cadres fluides + mobile stacking                  */
+/* ─────────────────────────────────────────────────────────────────── */
+.frame.single {
+  width: clamp(120px, 30vw, 180px);
+  margin: 0 auto;
+}
+.frame.double {
+  width: clamp(240px, 60vw, 360px);
+  margin: 0 auto;
+}
+@media (max-width: 768px) {
+  .teamRow {
+    display: flex;
+    flex-direction: column !important;
+    align-items: center;
+    gap: .75rem;
+  }
+  /* cartes carrées sur mobile */
+  .teamRow .card {
+    height: auto;
+    aspect-ratio: 1/1;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────── */
+/* 4K & High-DPI (Scaling ≥200 %)                                     */
+/* ─────────────────────────────────────────────────────────────────── */
 @media 
   (min-width: 2560px),
   (min-width: 1280px) and (min-resolution: 2dppx) 
 {
-  /* 1) Échelle globale légèrement réduite */
   html {
-    font-size: 0.9rem; /* toutes les rem descendent de 10% */
+    font-size: 0.9rem;
   }
-
-  /* 2) Contrainte & centrage de la page */
   .page {
     max-width: 80%;
     margin: 0 auto;
     padding-left: 8%;
     padding-right: 4%;
   }
-
-  /* 3) Titres <h2> un peu plus petits */
   h2 {
     font-size: 1.4rem;
   }
-
-  /* 4) Bannières et cartes */
   .banner {
     padding: 1rem;
   }
@@ -148,16 +208,12 @@ a {
     height: auto;
     aspect-ratio: 260 / 320;
   }
-
-  /* 5) Personae frames fluides */
   .frame.single {
     width: clamp(200px, 15vw, 260px);
   }
   .frame.double {
     width: clamp(400px, 30vw, 520px);
   }
-
-  /* 6) Images d’armes ajustées */
   .weaponItem img {
     width: clamp(100px, 5vw, 150px);
   }

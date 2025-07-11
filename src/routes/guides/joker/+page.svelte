@@ -20,162 +20,172 @@
   }
 
   /* ─── Données & fallback ─── */
-  const why              = d.awarenessReasons ?? {};
-
-  const pros:string[]    = d.pros ?? [
+  const why           = d.awarenessReasons ?? {};
+  const pros: string[]    = d.pros ?? [
     'Très bons dégâts Curse en AoE',
     'Buff ATK faciles à empiler pour des gros burst damages',
     'Excellent pour nettoyer des vagues rapidement'
   ];
-
-  /* Seuls deux “Cons” valides, cf. remarques utilisateur */
-  const cons:string[]    = [
+  const cons: string[]    = [
     'Très dépendant de Rin pour maximiser les dégâts',
     'Risque de power-creep sur le long terme (peut-être avec Berry)'
   ];
-
-  /* Skills (tirés de Prydwen + Game8) */
   const skills = d.skills ?? [
-    {
-      id : 1,
-      name : 'Trickster’s Plunder',
-      type : 'Curse',
-      description : 'Inflige 180 % ATK dégâts Curse à un ennemi et se confère 1 cumul de Will of Rebellion.'
-    },
-    {
-      id : 2,
-      name : 'Phantom Omen',
-      type : 'Curse',
-      description : 'Inflige 130 % ATK dégâts Curse à tous les ennemis et applique le statut Weaken pendant 2 tours.'
-    },
-    {
-      id : 3,
-      name : 'Arsène’s Chains',
-      type : 'Curse',
-      description : 'Inflige 250 % ATK dégâts Curse à un ennemi (+ 50 % si affaibli) et donne une action supplémentaire.'
-    },
-    {
-      id : 4,
-      name : 'Adverse Resolve',
-      type : 'Passive',
-      description : "Augmente l'attaque de 18% pour chaque stack de Will of Rebellion"
-    },
-    {
-      id : 5,
-      name : 'Resistance',
-      type : 'Passive',
-      description : "Augmente les dégâts des Extra Actions de 72%"
-    }
+    { id: 1, name: 'Trickster’s Plunder', type: 'Curse', description: 'Inflige 180 % ATK dégâts Curse…' },
+    { id: 2, name: 'Phantom Omen',       type: 'Curse', description: 'Inflige 130 % ATK dégâts Curse…' },
+    { id: 3, name: 'Arsène’s Chains',    type: 'Curse', description: 'Inflige 250 % ATK dégâts Curse…' },
+    { id: 4, name: 'Adverse Resolve',    type: 'Passive', description: "Augmente l'attaque de 18%…" },
+    { id: 5, name: 'Resistance',         type: 'Passive', description: "Augmente les dégâts des Extra…" }
   ];
-
-  /* Rotation idéale */
-  const rotation = 'Trickster’s Plunder → Arsène’s Chains (→ Phantom Omen dans certaines conditions spéciales)';
-
-  /* Substats conseillées */
-  const bestSubstats = d.bestSubstats ?? [
-    'Crit Rate',
-    'ATK %',
-    'Crit Damage',
-    'Speed'
-  ];
-
-  /* Core Personae pour early-game (≤ Rank V) */
-  const coreEarly = d.corePersonaeEarly ?? [
-    { name:'Succubus',      img:'/images/personae/succubus.png' },
-    { name:'Leanan Sidhe',  img:'/images/personae/leanan_sidhe.png' },
-    { name:'Janosik',       img:'/images/personae/janosik.png' },
-    { name:'White Rider',   img:'/images/personae/white_rider.png' }
+  const rotation     = 'Trickster’s Plunder → Arsène’s Chains (→ Phantom Omen…)';
+  const bestSubstats = d.bestSubstats ?? ['Crit Rate','ATK %','Crit Damage','Speed'];
+  const coreEarly    = d.corePersonaeEarly ?? [
+    { name:'Succubus',     img:'/images/personae/succubus.png' },
+    { name:'Leanan Sidhe', img:'/images/personae/leanan_sidhe.png' },
+    { name:'Janosik',      img:'/images/personae/janosik.png' },
+    { name:'White Rider',  img:'/images/personae/white_rider.png' }
   ];
 </script>
 
 <style>
-  :root{
+  :root {
     /* facile à ajuster ensuite */
     --font-h2:1.55rem;
   }
 
-  .page{padding-left:10%;padding-right:4%;}
+  .page {
+    padding-left:10%;
+    padding-right:4%;
+  }
 
   /* ─── Bannière ─── */
-  .banner{
-    display:flex;gap:1.5rem;align-items:center;justify-content:center;
-    background:var(--bg-surface);padding:1.5rem;border-radius:1rem;
+  .banner {
+    display:flex; gap:1.5rem;
+    align-items:center; justify-content:center;
+    background:var(--bg-surface); padding:1.5rem;
+    border-radius:1rem;
   }
-  .tier{border-collapse:collapse;font-size:1.2rem;min-width:240px;}
-  .tier th,.tier td{border:1px solid var(--border);padding:.6rem 1.2rem;text-align:center;}
-  .tier td.t0{background:#E02828;color:#fff;font-weight:700;}
+  .tier {
+    border-collapse:collapse; font-size:1.2rem; min-width:240px;
+  }
+  .tier th,
+  .tier td {
+    border:1px solid var(--border); padding:.6rem 1.2rem;
+    text-align:center;
+  }
+  .tier td.t0 {
+    background:#E02828; color:#fff; font-weight:700;
+  }
 
   /* ─── Sections / Tables ─── */
-  h2{font-size:var(--font-h2);}
-  .section{margin:2.5rem 0;}
-  .table{width:100%;border-collapse:collapse;}
-  .table th,.table td{border:1px solid var(--border);padding:.5rem;text-align:left;}
+  h2 { font-size:var(--font-h2); }
+  .section { margin:2.5rem 0; }
+  .table {
+    width:100%; border-collapse:collapse;
+  }
+  .table th,
+  .table td {
+    border:1px solid var(--border);
+    padding:.5rem; text-align:left;
+  }
 
   /* Présentation réduite & centrée */
-  .presentationTable{width:75%;margin:0 auto;}
+  .presentationTable {
+    width:75%; margin:0 auto;
+  }
 
   /* ─── Pros & Cons : puces custom ─── */
-  .prosList, .consList{margin:0;padding-left:1.1rem;list-style:none;}
-  .prosList li::before{
-    content:"+";margin-right:.45rem;font-weight:700;color:#57d97c; /* vert clair */
+  .prosList,
+  .consList {
+    margin:0; padding-left:1.1rem; list-style:none;
   }
-  .consList li::before{
-    content:"−";margin-right:.45rem;font-weight:700;color:#ff5c5c; /* rouge */
+  .prosList li::before {
+    content:"+"; margin-right:.45rem;
+    font-weight:700; color:#57d97c;
+  }
+  .consList li::before {
+    content:"−"; margin-right:.45rem;
+    font-weight:700; color:#ff5c5c;
   }
 
-  /* Assure un peu d’espace autour des icônes dans <th> */
-  .pc-icon{width:20px;height:20px;margin-right:.35rem;vertical-align:middle;}
+  /* Icônes dans <th> */
+  .pc-icon {
+    width:20px; height:20px;
+    margin-right:.35rem; vertical-align:middle;
+  }
 
   /* ─── Weapons ─── */
-  .weaponGrid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
-  .weaponItem{display:flex;gap:.8rem;align-items:center;}
-  .weaponItem img{width:150px;border-radius:.4rem;}
+  .weaponGrid {
+    display:grid; gap:1rem;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  }
+  .weaponItem {
+    display:flex; gap:.8rem; align-items:center;
+  }
+  .weaponItem img {
+    width:150px; border-radius:.4rem;
+  }
 
   /* ─── Teams ─── */
-  .teamGrid{display:flex;flex-direction:column;gap:2rem;align-items:center;}
-  .teamRow{
-    display:flex;gap:5%;flex-wrap:nowrap;
-    justify-content:center;align-items:flex-start;
+  .teamGrid {
+    display:flex; flex-direction:column;
+    gap:2rem; align-items:center;
+  }
+  .teamRow {
+    display:flex; gap:5%; flex-wrap:nowrap;
+    justify-content:center; align-items:flex-start;
   }
 
   /* ─── Figure (cadre + nom) ─── */
-  .frame{display:flex;flex-direction:column;align-items:center;margin:0;flex:0 0 auto;}
-  .frame.single{width:260px;}
-  .frame.double{width:520px;}
+  .frame {
+    display:flex; flex-direction:column;
+    align-items:center; margin:0; flex:0 0 auto;
+  }
+  .frame.single { width:260px; }
+  .frame.double { width:520px; }
 
   /* ─── Carte : fond + bordure + image(s) ─── */
-  .card{
-    position:relative;
-    width:100%;height:320px;
-    box-sizing:border-box;padding:0.25%;
+  .card {
+    position:relative; width:100%; height:320px;
+    box-sizing:border-box; padding:0.25%;
     border:2px solid #fff;
     background-color:var(--bg-surface);
     background-image:url('/images/character_background.png');
-    background-size:cover;background-position:center;background-repeat:no-repeat;
+    background-size:cover; background-position:center;
     overflow:hidden;
-    display:flex;align-items:center;justify-content:center;
+    display:flex; align-items:center; justify-content:center;
   }
-  .card.single img,.card.double img{
-    max-width:100%;max-height:100%;
-    object-fit:contain;border-radius:.75rem;
+  .card.single img,
+  .card.double img {
+    max-width:100%; max-height:100%;
+    object-fit:contain; border-radius:.75rem;
   }
-  .card.double{display:grid;grid-template-columns:1fr 1fr;}
-  figcaption{margin-top:.35rem;font-size:.9rem;text-align:center;}
+  .card.double {
+    display:grid; grid-template-columns:1fr 1fr;
+  }
 
   /* ─── Wonder Personae ─── */
-  .wonderGrid{
-    display:grid;gap:1.5rem;
+  .wonderGrid {
+    display:grid; gap:1.5rem;
     grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
     justify-items:center;
   }
-  .wonderGrid figure{display:grid;gap:.5rem;justify-items:center;text-align:center;}
-  .wonderGrid img{width:270px;height:270px;object-fit:contain;border:2px solid transparent;border-radius:.75rem;}
+  .wonderGrid figure {
+    display:grid; gap:.5rem;
+    justify-items:center; text-align:center;
+  }
+  .wonderGrid img {
+    width:270px; height:270px;
+    object-fit:contain;
+    border:2px solid transparent;
+    border-radius:.75rem;
+  }
 
-  /* Icônes Révélations upsize */
-  .revelations-table td img{width:240px;}
-
-  /* Skills */
-  .skills img{width:24px;margin-right:.35rem;vertical-align:middle;}
+  /* ─── Skills ─── */
+  .skills img {
+    width:24px; margin-right:.35rem;
+    vertical-align:middle;
+  }
 </style>
 
 <svelte:head><title>Joker – Guide</title></svelte:head>

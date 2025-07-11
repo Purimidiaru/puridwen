@@ -1,7 +1,7 @@
 <script lang="ts">
   import { yuiData as d } from './data';
 
-  /* Regroupe Okyann + Puppet dans un même cadre double */
+  /* Regroupement Okyann + Puppet */
   function frames(members) {
     const clean = members.filter(m => m.img);
     const list: any[] = [];
