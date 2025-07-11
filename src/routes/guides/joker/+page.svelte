@@ -31,11 +31,12 @@
     'Risque de power-creep sur le long terme (peut-être avec Berry)'
   ];
   const skills = d.skills ?? [
-    { id: 1, name: 'Trickster’s Plunder', type: 'Curse', description: 'Inflige 180 % ATK dégâts Curse…' },
-    { id: 2, name: 'Phantom Omen',       type: 'Curse', description: 'Inflige 130 % ATK dégâts Curse…' },
-    { id: 3, name: 'Arsène’s Chains',    type: 'Curse', description: 'Inflige 250 % ATK dégâts Curse…' },
-    { id: 4, name: 'Adverse Resolve',    type: 'Passive', description: "Augmente l'attaque de 18%…" },
-    { id: 5, name: 'Resistance',         type: 'Passive', description: "Augmente les dégâts des Extra…" }
+    { id: 1, name: 'Trickster’s Plunder', type: 'Curse', description: 'Inflige des dégâts Curse à tous les ennemis (83,0 % Attack) + 20 % de chances d’infliger le debuff Curse + Gagne 1 stack de Will of Rebellion.' },
+    { id: 2, name: 'Phantom Omen',       type: 'Curse', description: 'Inflige des dégâts Curse à un ennemi (97,6 % Attack). S’il n’y a qu’un seul ennemi présent, gagne 2 stacks de Will of Rebellion.' },
+    { id: 3, name: 'Arsène’s Chains',    type: 'Curse', description: 'Inflige des dégâts Curse à tous les ennemis (74,2 % Attack). Si utilisée lors d’une Extra Action, les dégâts sont augmentés de 25 %. Si l’ennemi a un malus actif, les dégâts sont augmentés de 25 % supplémentaires.' },
+    { id: 3, name: 'Thief Tactics',    type: 'Curse', description: '[HIGHLIGHT] : Inflige des dégâts Curse à tous les ennemis (205,0 % Attack) + Gagne 1 stack de Will of Rebellion.' },
+    { id: 5, name: 'Adverse Resolve',    type: 'Passive', description: "+18,0 % Attack pour chaque stack de Will of Rebellion." },
+    { id: 6, name: 'Resistance',         type: 'Passive', description: "+72,0% de dégâts lors des Extra Actions." }
   ];
   const rotation     = 'Trickster’s Plunder → Arsène’s Chains (→ Phantom Omen…)';
   const bestSubstats = d.bestSubstats ?? ['Crit Rate','ATK %','Crit Damage','Speed'];
