@@ -88,35 +88,3 @@ a{color:inherit;text-decoration:none;}
   padding:1rem;
   opacity:.8;
 }
-
-/*  =========================================================================
-    Responsive tweaks (tablette, mobile, écrans 4K)
-    ====================================================================== */
-
-html {
-  /* Police fluide : 14 → 18 px selon la largeur */
-  font-size: clamp(14px, 0.9vw + 0.6rem, 18px);
-}
-
-.page {
-  width: 100%;
-  max-width: 1400px;          /* lisible même sur 4K */
-  margin: 0 auto;
-  padding: 0 clamp(1rem, 4vw, 4rem);
-}
-
-/* Réduction générale sur téléphones */
-@media (max-width: 620px) {
-  h1 { font-size: 1.8rem; }
-  h2 { font-size: 1.15rem; }
-  .grid { gap: 1rem; }
-  .card img.cover { aspect-ratio: 2/3; }  /* moins hautes sur mobile */
-  .navbar { padding: .5rem .75rem; }
-  .hero { padding: 2rem 1rem 3rem; }
-  .hero h1 { font-size: 2.5rem; }
-}
-
-/* Un peu plus d’air sur écrans ≥ 1920 px */
-@media (min-width: 1920px) {
-  .page { padding-left: 18%; padding-right: 18%; }
-}
