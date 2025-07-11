@@ -4,7 +4,7 @@
   /* Regroupe Okyann + Puppet dans un même cadre double */
   function frames(members) {
     const clean = members.filter(m => m.img);
-    const list = [];
+    const list: any[] = [];
     for (let i = 0; i < clean.length; i++) {
       const m = clean[i];
       if (m.name === 'Okyann' && clean[i + 1]?.name === 'Puppet') {
@@ -19,10 +19,75 @@
     return list;
   }
 
-  const why = d.awarenessReasons ?? {};
+  /* ─── Données & fallback ─── */
+  const why              = d.awarenessReasons ?? {};
+
+  const pros:string[]    = d.pros ?? [
+    'Très bons dégâts Curse en AoE',
+    'Self-buff ATK + Will of Rebellion faciles à empiler',
+    'Excellent pour nettoyer des vagues rapidement'
+  ];
+
+  /* Seuls deux “Cons” valides, cf. remarques utilisateur */
+  const cons:string[]    = [
+    'Très dépendant de Rin pour maximiser les dégâts',
+    'Risque de power-creep sur le long terme (peut-être avec Berry)'
+  ];
+
+  /* Skills (tirés de Prydwen + Game8) */
+  const skills = d.skills ?? [
+    {
+      id : 1,
+      name : 'Trickster’s Plunder',
+      type : 'Curse',
+      description : 'Inflige 180 % ATK dégâts Curse à un ennemi et se confère 1 cumul de Will of Rebellion.'
+    },
+    {
+      id : 2,
+      name : 'Phantom Omen',
+      type : 'Curse',
+      description : 'Inflige 130 % ATK dégâts Curse à tous les ennemis et applique le statut Weaken pendant 2 tours.'
+    },
+    {
+      id : 3,
+      name : 'Arsène’s Chains',
+      type : 'Curse',
+      description : 'Inflige 250 % ATK dégâts Curse à un ennemi (+ 50 % si affaibli) et donne une action supplémentaire.'
+    },
+    {
+      id : 4,
+      name : 'Will of Rebellion',
+      type : 'Passive',
+      description : 'À chaque ennemi vaincu, +1 cumul ; chaque cumul octroie +6 % ATK (max 10).'
+    }
+  ];
+
+  /* Rotation idéale */
+  const rotation = 'Trickster’s Plunder → Arsène’s Chains (→ Phantom Omen dans certaines conditions spéciales)';
+
+  /* Substats conseillées */
+  const bestSubstats = d.bestSubstats ?? [
+    'Crit Rate',
+    'ATK %',
+    'Crit Damage',
+    'Speed'
+  ];
+
+  /* Core Personae pour early-game (≤ Rank V) */
+  const coreEarly = d.corePersonaeEarly ?? [
+    { name:'Succubus',      img:'/images/personae/succubus.png' },
+    { name:'Leanan Sidhe',  img:'/images/personae/leanan_sidhe.png' },
+    { name:'Janosik',       img:'/images/personae/janosik.png' },
+    { name:'White Rider',   img:'/images/personae/white_rider.png' }
+  ];
 </script>
 
 <style>
+  :root{
+    /* facile à ajuster ensuite */
+    --font-h2:1.55rem;
+  }
+
   .page{padding-left:10%;padding-right:4%;}
 
   /* ─── Bannière ─── */
@@ -35,9 +100,25 @@
   .tier td.t0{background:#E02828;color:#fff;font-weight:700;}
 
   /* ─── Sections / Tables ─── */
+  h2{font-size:var(--font-h2);}
   .section{margin:2.5rem 0;}
   .table{width:100%;border-collapse:collapse;}
   .table th,.table td{border:1px solid var(--border);padding:.5rem;text-align:left;}
+
+  /* Présentation réduite & centrée */
+  .presentationTable{width:75%;margin:0 auto;}
+
+  /* ─── Pros & Cons : puces custom ─── */
+  .prosList, .consList{margin:0;padding-left:1.1rem;list-style:none;}
+  .prosList li::before{
+    content:"+";margin-right:.45rem;font-weight:700;color:#57d97c; /* vert clair */
+  }
+  .consList li::before{
+    content:"−";margin-right:.45rem;font-weight:700;color:#ff5c5c; /* rouge */
+  }
+
+  /* Assure un peu d’espace autour des icônes dans <th> */
+  .pc-icon{width:20px;height:20px;margin-right:.35rem;vertical-align:middle;}
 
   /* ─── Weapons ─── */
   .weaponGrid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
@@ -63,30 +144,16 @@
     box-sizing:border-box;padding:0.25%;
     border:2px solid #fff;
     background-color:var(--bg-surface);
-    background-image:url('/images/character_background.png');  /* ← fond ajouté */
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
+    background-image:url('/images/character_background.png');
+    background-size:cover;background-position:center;background-repeat:no-repeat;
     overflow:hidden;
-
     display:flex;align-items:center;justify-content:center;
   }
-
-  /* simple */
-  .card.single img{
+  .card.single img,.card.double img{
     max-width:100%;max-height:100%;
     object-fit:contain;border-radius:.75rem;
   }
-
-  /* double */
   .card.double{display:grid;grid-template-columns:1fr 1fr;}
-  .card.double img{
-    max-width:100%;max-height:100%;
-    object-fit:contain;border-radius:.75rem;
-    place-self:center;
-  }
-
-  /* noms sous la carte */
   figcaption{margin-top:.35rem;font-size:.9rem;text-align:center;}
 
   /* ─── Wonder Personae ─── */
@@ -98,10 +165,11 @@
   .wonderGrid figure{display:grid;gap:.5rem;justify-items:center;text-align:center;}
   .wonderGrid img{width:270px;height:270px;object-fit:contain;border:2px solid transparent;border-radius:.75rem;}
 
-    /* ─── Icônes Révélations : +200 % ─── */
-  .revelations-table td img{
-    width:240px;              /* 24 px × 2 = 48 px */
-  }
+  /* Icônes Révélations upsize */
+  .revelations-table td img{width:240px;}
+
+  /* Skills */
+  .skills img{width:24px;margin-right:.35rem;vertical-align:middle;}
 </style>
 
 <svelte:head><title>Joker – Guide</title></svelte:head>
@@ -124,13 +192,74 @@
   <!-- ─── Présentation ─── -->
   <div class="section">
     <h2>Présentation</h2>
-    <table class="table">
+    <table class="table presentationTable">
       <tbody>
-        <tr><th>Élément</th><td><img src={d.element.icon} alt="" style="width:20px;margin-right:.35rem;vertical-align:middle;">{d.element.name}</td></tr>
-        <tr><th>Rôle</th><td><img src={d.roleIcon} alt="" style="width:20px;margin-right:.35rem;vertical-align:middle;">{d.role}</td></tr>
+        <tr>
+          <th>Élément</th>
+          <td><img src={d.element.icon} alt="" style="width:20px;margin-right:.35rem;vertical-align:middle;">{d.element.name}</td>
+        </tr>
+        <tr>
+          <th>Rôle</th>
+          <td><img src={d.roleIcon} alt="" style="width:20px;margin-right:.35rem;vertical-align:middle;">{d.role}</td>
+        </tr>
         <tr><th>Cible</th><td>{d.targetType}</td></tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- ─── Pros & Cons ─── -->
+  <div class="section">
+    <h2>Pros&nbsp;&amp;&nbsp;Cons</h2>
+    <table class="table prosCons">
+      <tbody>
+        <tr>
+          <th>
+            <img src="/images/icons/thumb-up-green.png" alt="" class="pc-icon">
+            Pros
+          </th>
+          <td>
+            <ul class="prosList">
+              {#each pros as p}<li>{p}</li>{/each}
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <img src="/images/icons/thumb-down-red.png" alt="" class="pc-icon">
+            Cons
+          </th>
+          <td>
+            <ul class="consList">
+              {#each cons as c}<li>{c}</li>{/each}
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ─── Skills ─── -->
+  <div class="section">
+    <h2>Skills</h2>
+    <table class="table skills">
+      <thead><tr><th>Skill</th><th>Description</th></tr></thead>
+      <tbody>
+        {#each skills as s}
+          <tr>
+            <td>
+              {#if s.type === 'Passive'}
+                <img src="/images/icons/passive.webp" alt="Passif">{s.name}
+              {:else}
+                <img src={d.element.icon} alt="Curse">{s.name}
+              {/if}
+            </td>
+            <td>{s.description}</td>
+          </tr>
+        {/each}
+      </tbody>
+    </table>
+
+    <p style="margin-top:1rem;"><strong>Rotation conseillée&nbsp;:</strong> {rotation}</p>
   </div>
 
   <!-- ─── Weapons ─── -->
@@ -147,9 +276,7 @@
   <div class="section">
     <h2>Révélations recommandées</h2>
     <table class="table revelations-table">
-      <thead>
-        <tr><th colspan="2">Set</th><th>Pourquoi</th></tr>
-      </thead>
+      <thead><tr><th colspan="2">Set</th><th>Pourquoi</th></tr></thead>
       <tbody>
         {#each d.revelations as r}
           <tr>
@@ -166,6 +293,10 @@
         {/each}
       </tbody>
     </table>
+
+    <!-- Meilleures substats -->
+    <h3 style="margin-top:1.2rem;">Meilleures substats</h3>
+    <ul>{#each bestSubstats as s}<li>{s}</li>{/each}</ul>
   </div>
 
   <!-- ─── Awareness ─── -->
@@ -176,7 +307,7 @@
       <thead><tr><th>Awareness</th><th>Pourquoi</th></tr></thead>
       <tbody>
         {#each d.awarenessPrio as a}
-          <tr><td>{a}</td><td>{why[a] ?? "—"}</td></tr>
+          <tr><td>{a}</td><td>{why[a] ?? '—'}</td></tr>
         {/each}
       </tbody>
     </table>
@@ -197,7 +328,7 @@
                     <img src={m.img} alt={m.name}>
                   {/each}
                 </div>
-                <figcaption>Okyann ou Puppet</figcaption>
+                <figcaption>Okyann&nbsp;ou&nbsp;Puppet</figcaption>
               </figure>
             {:else}
               <!-- simple -->
@@ -210,7 +341,7 @@
             {/if}
           {/each}
         </div>
-        <em style="margin-top:.8rem;">Rotation : {team.rotation}</em>
+        <em style="margin-top:.8rem;">Rotation&nbsp;: {team.rotation}</em>
       {/each}
     </div>
   </div>
@@ -218,23 +349,29 @@
   <!-- ─── Wonder Personae ─── -->
   <div class="section">
     <h2>Wonder Personae</h2>
+
+    <!-- Core Early -->
+    <h3>Core&nbsp;Personae&nbsp;(Early)</h3>
+    <div class="wonderGrid" style="margin-bottom:2rem;">
+      {#each coreEarly as p}
+        <figure><img src={p.img} alt={p.name}><figcaption>{p.name}</figcaption></figure>
+      {/each}
+    </div>
+
+    <!-- Ideal Late -->
+    <h3>Ideal&nbsp;Personae&nbsp;(Late)</h3>
     <div class="wonderGrid">
       {#each d.wonderPersonae as p}
-        <figure>
-          <img src={p.img} alt={p.name}>
-          <figcaption>{p.name}</figcaption>
-        </figure>
+        <figure><img src={p.img} alt={p.name}><figcaption>{p.name}</figcaption></figure>
       {/each}
     </div>
   </div>
 
   <!-- ─── Stats ─── -->
   <div class="section">
-    <h2>Stats &amp; Core Stats</h2>
+    <h2>Stats&nbsp;&amp;&nbsp;Core Stats</h2>
     <ul>
-      {#each d.statsCombined as s}
-        <li>{s}</li>
-      {/each}
+      {#each d.statsCombined as s}<li>{s}</li>{/each}
     </ul>
   </div>
 </div>
