@@ -186,6 +186,47 @@
     width:24px; margin-right:.35rem;
     vertical-align:middle;
   }
+
+  /* ─── Mobile : on divise par deux les cadres Personae ─── */
+  @media (max-width: 768px) {
+    .frame.single {
+      width: 130px;   /* 260px / 2 */
+    }
+    .frame.double {
+      width: 260px;   /* 520px / 2 */
+    }
+  }
+
+    /* ─── Mobile : cadre Personae centré & réduit ─── */
+  @media (max-width: 768px) {
+    /* 1) On réduit le padding global pour rentrer dans l'écran */
+    .page {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    /* 2) On centre parfaitement les vignettes */
+    .teamRow {
+      display: flex;
+      flex-direction: column !important;
+      align-items: center;
+      justify-content: center;
+      gap: .75rem;
+    }
+
+    /* 3) On impose une marge auto sur chaque frame */
+    .frame {
+      margin: 0 auto;
+    }
+
+    /* 4) On divise par deux les largeurs de frame */
+    .frame.single {
+      width: 130px;  /* 260px / 2 */
+    }
+    .frame.double {
+      width: 260px;  /* 520px / 2 */
+    }
+  }
 </style>
 
 <svelte:head><title>Joker – Guide</title></svelte:head>

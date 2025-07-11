@@ -110,7 +110,6 @@ a {
   opacity: .8;
 }
 
-
 /* ─────────────────────────────────────────────────────────────────── */
 /* 1) Bannière – taille fixe + responsive                             */
 /* ─────────────────────────────────────────────────────────────────── */
@@ -123,7 +122,6 @@ a {
   min-width: 240px;
   max-width: 30%;
 }
-/* mobile-only override */
 @media (max-width: 768px) {
   .banner {
     flex-direction: column;
@@ -140,20 +138,18 @@ a {
 }
 
 /* ─────────────────────────────────────────────────────────────────── */
-/* 2) Révélations : images fluides + desktop à ½ taille               */
+/* 2) Révélations : mobile à 200 % de la taille desktop, desktop à ½    */
 /* ─────────────────────────────────────────────────────────────────── */
 .revelations-table td img {
-  width: 100%;
-  max-width: 120px;    /* 200 % de 60px */
+  width: auto;
+  max-width: 100px;
   height: auto;
   display: block;
   margin: 0.5rem auto;
 }
-
-/* À partir de 769px (desktop) on revient à 60px */
-@media (min-width: 769px) {
+@media (max-width: 768px) {
   .revelations-table td img {
-    max-width: 60px;
+    max-width: 50px;
   }
 }
 
@@ -168,14 +164,25 @@ a {
   width: clamp(240px, 60vw, 360px);
   margin: 0 auto;
 }
+
 @media (max-width: 768px) {
   .teamRow {
     display: flex;
-    flex-direction: column !important;
+    flex-direction: column;
     align-items: center;
+    justify-content: center; /* ✅ centre les vignettes */
     gap: .75rem;
   }
-  /* cartes carrées sur mobile */
+
+  /* On réduit les cadres de moitié sur mobile */
+  .frame.single {
+    width: 130px;  /* 260px / 2 */
+  }
+  .frame.double {
+    width: 260px;  /* 520px / 2 */
+  }
+
+  /* Cartes carrées sur mobile */
   .teamRow .card {
     height: auto;
     aspect-ratio: 1/1;
