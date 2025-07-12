@@ -320,15 +320,18 @@
     <p style="margin-top:1rem;"><strong>Rotation conseillée&nbsp;:</strong> {rotation}</p>
   </div>
 
-  <!-- ─── Weapons ─── -->
-  <div class="section">
-    <h2>Weapons</h2>
-    <div class="weaponGrid">
-      {#each d.weapons as w}
-        <div class="weaponItem"><img src={w.img} alt={w.name}><span>{w.name}</span></div>
-      {/each}
+<!-- Weapons -->
+<div class="weaponGrid">
+  {#each d.weapons as w}
+    <div class="weaponItem">
+      <img src={w.img} alt={w.name}>
+      <span>
+        <strong>{w.name}</strong><br>
+        <em>{@html w.passive}</em>
+      </span>
     </div>
-  </div>
+  {/each}
+</div>
 
   <!-- ─── Révélations ─── -->
   <div class="section">
